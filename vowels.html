@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body{
+            padding:65px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body class="container">
+    <h3>Vowel Counter</h3>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="inputtext" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Enter or paste text</label>
+    </div>
+    <div class="vowelcount" id="divID"></div>
+    
+</body>
+<script>
+
+    var div = document.getElementById("divID");
+    $("#divID");
+
+    $(document).ready(function(){
+        //$(div).addClass().removeClass().fade()
+        $("#inputtext").on("blur keyup change paste", function(e){
+        //$("#inputtext").keyup(function(){
+            output = countVowels($(this).val());
+            console.log(output);
+            totalCount = output.A + output.E + output.I + output.O + output.U;
+            $('.vowelcount').html(`<p>
+                Total Count: ${ totalCount }.   
+                A's: ${ output.A }  |   
+                E's: ${ output.E }  |     
+                I's: ${ output.I }  |     
+                O's: ${ output.O }  |     
+                U's: ${ output.U }  |     
+            </p>`);
+        })
+
+    });
+    
+    //function countVowels(inputString){
+    const countVowels = (inputString) => {
+        let A = E = I = O = U = 0;
+        for(let i=0; i<inputString.length; i++){
+                 if (inputString.toLowerCase().charAt(i) === 'a') A++;
+            else if (inputString.toLowerCase().charAt(i) === 'e') E++;
+            else if (inputString.toLowerCase().charAt(i) === 'i') I++;
+            else if (inputString.toLowerCase().charAt(i) === 'o') O++;
+            else if (inputString.toLowerCase().charAt(i) === 'u') U++;
+        }
+        return { 
+                A: A, 
+                E: E, 
+                I:I, 
+                O:O, 
+                U:U 
+            }
+        //return [A, E, I, O, U];
+    }
+
+    const countTotalVowels = (inputString) => {
+        const vowels = "aeiou";
+        count = 0;
+        for(let i=0; i<inputString.length; i++){
+            if(vowels.indexOf(inputString.toLowerCase().charAt(i)) !== -1)
+                count++
+        }
+        return count;
+    }
+</script>
+</html>
